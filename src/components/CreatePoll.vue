@@ -244,8 +244,8 @@ interface Poll {
   choices: string[];
 }
 
-const API_URL = 'http://localhost:8080/api/v1/poll/create-poll';
-const POLLS_URL = 'http://localhost:8080/api/v1/poll?page=0&size=10';
+const API_URL = 'https://vote-system-api.psa-khmer.world/api/v1/poll/create-poll';
+const POLLS_URL = 'https://vote-system-api.psa-khmer.world/api/v1/poll?page=0&size=10';
 const polls = ref<Poll[]>([]);
 const isSubmitting = ref(false);
 const apiMessage = ref('');
@@ -399,7 +399,7 @@ newPoll.choices = [
 
 const deletePoll = async (uuid: string) => {
   try {
-    const response = await fetch(`http://localhost:8080/api/v1/poll/delete/${uuid}`, {
+    const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/poll/delete/${uuid}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -116,7 +116,7 @@ const submitVote = async () => {
       selectedChoiceName: poll.value.choices[selectedVote.value].text, // Choice text
     };
 
-    const response = await fetch(`http://localhost:8080/api/v1/vote/create-vote`, {
+    const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/vote/create-vote`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
@@ -141,7 +141,7 @@ const submitVote = async () => {
 const fetchPoll = async () => {
   try {
     const pollId = route.params.id as string;
-    const response = await fetch(`http://localhost:8080/api/v1/poll/${pollId}`, {
+    const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/poll/${pollId}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -172,7 +172,7 @@ const fetchTotalVotes = async () => {
   if (!poll.value) return;
 
   try {
-    const response = await fetch(`http://localhost:8080/api/v1/vote/count/${poll.value.uuid}`, {
+    const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/vote/count/${poll.value.uuid}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -196,7 +196,7 @@ const fetchResults = async () => {
   try {
     const votePromises = poll.value.choices.map(async (choice) => {
       const encodedChoiceText = encodeURIComponent(choice.text);
-      const response = await fetch(`http://localhost:8080/api/v1/vote/count/${pollId}/${encodedChoiceText}`, {
+      const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/vote/count/${pollId}/${encodedChoiceText}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

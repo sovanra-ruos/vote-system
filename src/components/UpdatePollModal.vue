@@ -254,7 +254,7 @@ const saveChanges = async () => {
       choices: editedPoll.choices.map(choice => choice.text)
     };
 
-    const response = await fetch(`http://localhost:8080/api/v1/poll/poll/${editedPoll.uuid}`, {
+    const response = await fetch(`https://vote-system-api.psa-khmer.world/api/v1/poll/poll/${editedPoll.uuid}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

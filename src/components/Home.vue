@@ -53,7 +53,7 @@ const loading = ref(true);
 
 const fetchPolls = async () => {
   try {
-    const response = await fetch('http://localhost:8080/api/v1/poll?page=0&size=10');
+    const response = await fetch('https://vote-system-api.psa-khmer.world/api/v1/poll?page=0&size=10');
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const data = await response.json();
