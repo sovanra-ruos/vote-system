@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  vote-system-ui:
+    container_name: 'vote-system-ui'
+    #    image: 'pos-system'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - TZ=Asia/Bangkok
+    ports:
+      - '8104:8080'   #follow you port
