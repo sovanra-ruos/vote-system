@@ -272,13 +272,13 @@ const newPoll = reactive<PollFormData>({
   endDate: formatDateForInput(oneWeekLater),
   active: true,
   choices: [
-    { id: nextChoiceId++, text: '' },
-    { id: nextChoiceId++, text: '' },
+    { id: nextChoiceId.value++, text: '' },
+    { id: nextChoiceId.value++, text: '' },
   ],
 });
 
 const addChoice = () => {
-  newPoll.choices.push({ id: nextChoiceId++, text: '' });
+  newPoll.choices.push({ id: nextChoiceId.value++, text: '' });
 };
 
 const removeChoice = (index: number) => {
@@ -365,15 +365,15 @@ const handleSubmit = async () => {
 
       // Reset form
       newPoll.title = '';
-      newPoll.description = '';
-      newPoll.multipleChoice = false;
-      newPoll.isPrivate = false;
-      newPoll.startDate = formatDateForInput(new Date());
-      newPoll.endDate = formatDateForInput(oneWeekLater);
-      newPoll.choices = [
-        { id: nextChoiceId++, text: '' },
-        { id: nextChoiceId++, text: '' },
-      ];
+newPoll.description = '';
+newPoll.multipleChoice = false;
+newPoll.isPrivate = false;
+newPoll.startDate = formatDateForInput(new Date());
+newPoll.endDate = formatDateForInput(oneWeekLater);
+newPoll.choices = [
+  { id: nextChoiceId.value++, text: '' },
+  { id: nextChoiceId.value++, text: '' },
+];
     } else {
       // Handle error response
       let errorMessage;
@@ -423,9 +423,9 @@ const deletePoll = async (uuid: string) => {
 };
 
 const isEditModalOpen = ref(false);
-const currentEditPoll = ref(null);
+const currentEditPoll = ref<Poll | null>(null);
 
-const openEditModal = (poll) => {
+const openEditModal = (poll: Poll) => {
   currentEditPoll.value = poll;
   isEditModalOpen.value = true;
 };
@@ -435,7 +435,7 @@ const closeEditModal = () => {
   currentEditPoll.value = null;
 };
 
-const handleEditSave = (updatedPoll) => {
+const handleEditSave = (updatedPoll: Poll) => {
   // Find and update the poll in the local state
   const index = polls.value.findIndex(p => p.uuid === updatedPoll.uuid);
   if (index !== -1) {
